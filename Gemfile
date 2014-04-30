@@ -11,7 +11,7 @@ end
 
 #Nokogiri
 gem 'nokogiri', '1.6.1'
-gem 'mysql2'
+gem 'rest_client', '1.7.3'
 
 gem 'spree', '2.2.1'
 gem 'spree_gateway', :git => 'git://github.com/spree/spree_gateway.git', :branch => '2-2-stable'

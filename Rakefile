@@ -19,3 +19,4 @@ task :test_app do
   ENV['LIB_NAME'] = 'spree_currency_converter'
   Rake::Task['extension:test_app'].invoke
 end
+
