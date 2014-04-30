@@ -1,7 +1,10 @@
 SpreeCurrencyConverter
 ======================
 
-Introduction goes here.
+Will eventually include:
+
+- Rake task to scrape http://www.customs.go.kr/kcshome/rate/ExchangeRateList.do for the latest official Korean government exchange rate and then save this in the database.
+- Functionality to display prices in KRW that are stored in USD
 
 Installation
 ------------
