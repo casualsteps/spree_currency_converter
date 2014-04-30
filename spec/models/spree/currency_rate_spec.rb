@@ -33,8 +33,8 @@ describe Spree::CurrencyRate do
     let(:out_of_date_us_dollar_rate) { create(:out_of_date_us_dollar_rate) }
 
     it 'should calculate the price in korean won' do
-      price_in_won = latest_us_dollar_rate.convert_to_won 10000
-      expect(price_in_won).to eql 9.52
+      price_in_won = latest_us_dollar_rate.convert_to_won 1
+      expect(price_in_won).to eql Money::Money.new(1050,'KRW')
     end
   end
 end
