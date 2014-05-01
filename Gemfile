@@ -12,6 +12,8 @@ end
 #Nokogiri
 gem 'nokogiri', '1.6.1'
 gem 'rest_client', '1.7.3'
+gem 'money', '6.1.1'
+gem 'money-rails', '0.10.0'
 
 gem 'spree', '2.2.1'
 gem 'spree_gateway', :git => 'git://github.com/spree/spree_gateway.git', :branch => '2-2-stable'
