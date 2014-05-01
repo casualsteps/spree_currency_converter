@@ -9,11 +9,11 @@ describe Spree::Price do
       Spree::CurrencyRate.create(:rate => 1050, :base_currency => 'USD', :target_currency => 'KRW')
     end
     it "should return the products price in won" do
-      price_in_won = price.price_in_won
+      price_in_won = price.in_won
       expect(price_in_won).to eql Money::Money.new(20989,'KRW')
     end
     it "should return the products price as a string" do
-      price_in_won_s = price.price_in_won_s
+      price_in_won_s = price.in_won_s
       expect(price_in_won_s).to eql '20989'
     end
   end
