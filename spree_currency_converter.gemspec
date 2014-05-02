@@ -3,8 +3,8 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_currency_converter'
   s.version     = '2.2.1'
-  s.summary     = 'TODO: Add gem summary here'
-  s.description = 'TODO: Add (optional) gem description here'
+  s.summary     = 'Adds very very basic currency conversion'
+  s.description = 'Adds to_won and to_won_s methods to Spree::Price'
   s.required_ruby_version = '>= 1.9.3'
 
   s.author    = 'Kenley Tomlin'
