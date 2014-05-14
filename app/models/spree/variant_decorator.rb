@@ -3,7 +3,8 @@ module Spree
     after_save :add_price_in_won
 
     def add_price_in_won
-      self.prices.push Spree::Price.new(variant: self, amount: self.default_price.in_won_s, currency: 'KRW')
+      rate = Spree::CurrencyRate.find_by(:base_currency => 'USD')
+      self.prices.push Spree::Price.new(variant: self, amount: rate.convert_to_won(self.price), currency: 'KRW')
     end
   end
 end
