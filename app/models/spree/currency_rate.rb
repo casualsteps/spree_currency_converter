@@ -1,4 +1,4 @@
-require 'money'
+require 'monetize/core_extensions'
 
 module Spree
   class CurrencyRate < ActiveRecord::Base
