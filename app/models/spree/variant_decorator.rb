@@ -9,6 +9,7 @@ module Spree
       secondary_price.amount = rate.convert_to_won(self.price).amount
       if secondary_price && (secondary_price.changed? || secondary_price.new_record? || secondary_price.amount.present?)
         self.prices << secondary_price
+        secondary_price.save!
       end
     end
   end
