@@ -19,5 +19,10 @@ module Spree
       amount_in_won_s
     end
 
+    def convert_to_won_f(amount)
+      amount_in_won = self.convert_to_won(amount)
+      amount_in_won.to_f
+    end
+
   end
 end

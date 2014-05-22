@@ -40,4 +40,12 @@ describe Spree::CurrencyRate do
       expect(price_in_won_s).to eql '1050'
    end
   end
+
+  describe "it should provide the converted amount as a number" do
+    let(:latest_us_dollar_rate) { create(:latest_us_dollar_rate) }
+    it 'should calculate the price in Korean Won and return a number' do
+      price_in_won_f = latest_us_dollar_rate.convert_to_won_f 1
+      expect(price_in_won_f).to eql 1050.00
+    end
+  end
 end

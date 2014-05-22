@@ -28,7 +28,7 @@ require 'spree/testing_support/factories'
 require 'spree/testing_support/controller_requests'
 require 'spree/testing_support/authorization_helpers'
 require 'spree/testing_support/url_helpers'
-
+require 'spree/testing_support/preferences'
 # Requires factories defined in lib/spree_currency_converter/factories.rb
 require 'spree_currency_converter/factories'
 
@@ -42,7 +42,7 @@ RSpec.configure do |config|
   # visit spree.admin_path
   # current_path.should eql(spree.products_path)
   config.include Spree::TestingSupport::UrlHelpers
-
+  config.include Spree::TestingSupport::Preferences
   # == Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:

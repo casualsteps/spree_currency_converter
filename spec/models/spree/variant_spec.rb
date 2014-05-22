@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Spree::Variant do
   describe "when creating a variant" do
-    Spree::Config[:secondary_currency] = 'KRW'
+    Spree::Config[:presentation_currency] = 'KRW'
     let(:variant) { create(:variant) }
 
     before do

@@ -13,6 +13,7 @@ FactoryGirl.define do
     updated_at "2014-04-29 12:00:00"
     created_at "2014-04-29 12:00:00"
   end
+
   factory :british_pounds, class: Spree::CurrencyRate do
     base_currency "GBP"
     target_currency "KRW"
@@ -20,4 +21,31 @@ FactoryGirl.define do
     updated_at "2014-04-30 12:00:00"
     created_at "2014-04-30 12:00:00"
   end
+
+  factory :price_in_krw, parent: :price do
+    variant
+    amount 300000
+    currency 'KRW'
+  end
+
+  factory :price_in_usd, parent: :price do
+    variant
+    amount 200
+    currency 'USD'
+  end
+
+  factory :multi_currency_variant, parent: :base_variant do
+    prices {
+      Array[FactoryGirl.create(:price_in_krw),FactoryGirl.create(:price_in_usd)]
+    }
+  end
+
+  factory :line_item_in_krw, parent: :line_item do
+    price :price_in_krw
+  end
+
+  factory :line_item_in_usd, parent: :line_item do
+    price :price_in_usd
+  end
+
 end
