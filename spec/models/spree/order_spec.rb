@@ -24,13 +24,16 @@ describe "when placing an order it should use the USD price" do
       expect(@order.presentation_included_tax_total).to eq(0)
       expect(@order.display_presentation_included_tax_total).to eq(Spree::Money.new(0, {currency: Spree::Config[:presentation_currency]}))
       expect(@order.additional_tax_total).to eq(5.0)
-      expect(@order.presentation_additional_tax_total).to eq(5250)
+      expect(@order.presentation_additional_tax_total).to eq(5250.0)
       expect(@order.display_presentation_additional_tax_total).to eq(Spree::Money.new(5250, {currency: Spree::Config[:presentation_currency]}))
       expect(@order.shipment_total).to eq(10.0)
       expect(@order.presentation_shipment_total).to eq(10500.0)
       expect(@order.display_presentation_shipment_total).to eq(Spree::Money.new(10500.00, {currency: Spree::Config[:presentation_currency]}))
       expect(@order.presentation_payment_total).to eq(0)
       expect(@order.display_presentation_payment_total).to eq(Spree::Money.new(0,{currency: Spree::Config[:presentation_currency]}))
+      expect(@order.total).to eq(65)
+      expect(@order.presentation_total).to eq(68250.0)
+      expect(@order.display_presentation_total).to eq(Spree::Money.new(68250.0,{currency: Spree::Config[:presentation_currency]}))
     end
 
   end

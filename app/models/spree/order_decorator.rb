@@ -25,4 +25,8 @@ Spree::Order.class_eval do
     Spree::Money.new(self.presentation_payment_total,{currency: self.presentation_currency})
   end
 
+  def display_presentation_total
+    Spree::Money.new(self.presentation_total, {currency: self.presentation_currency})
+  end
+
 end
