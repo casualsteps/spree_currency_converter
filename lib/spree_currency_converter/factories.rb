@@ -40,6 +40,12 @@ FactoryGirl.define do
     }
   end
 
+  factory :multi_currency_product, parent: :product do
+    prices {
+      Array[FactorGirl.create(:price_in_krw),FactoryGirl.create(:price_in_usd)]
+    }
+  end
+
   factory :line_item_in_krw, parent: :line_item do
     price :price_in_krw
   end
