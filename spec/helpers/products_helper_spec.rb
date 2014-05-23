@@ -12,6 +12,8 @@ module Spree
     end
 
     let(:product) { create :multi_currency_product }
+    let(:price_diff_prod) { create :multi_currency_product_with_price_diff }
+    let(:price_diff) { create :multi_currency_variant, product: price_diff_prod }
     let(:variant) { create :multi_currency_variant }
 
     context "variant_price" do
@@ -26,6 +28,15 @@ module Spree
       describe "when the presentation_currency is KRW but currency USD is passed" do
         it "should return the price in USD" do
           expect(variant_price(variant,'USD')).to eq("$200.00")
+        end
+      end
+
+      describe "when the presentation_currency is KRW and there is a price difference" do
+        #price of the product in KRW is 210000.0 and the variant is 20989.0
+        #difference works out at 189,011 KRW
+        it "should return the price in KRW with the difference" do
+          Spree::Config[:show_variant_full_price] = false
+          expect(variant_price(price_diff)).to eq("(Subtract): &#x20A9;189,011")
         end
       end
     end

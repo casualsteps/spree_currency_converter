@@ -46,6 +46,13 @@ FactoryGirl.define do
     }
   end
 
+  factory :multi_currency_product_with_price_diff, parent: :product do
+    price 200.00
+    variants {
+      Array[FactoryGirl.create(:multi_currency_variant)]
+    }
+  end
+
   factory :line_item_in_krw, parent: :line_item do
     price :price_in_krw
   end

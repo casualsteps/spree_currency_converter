@@ -15,9 +15,9 @@ Spree::ProductsHelper.module_eval do
     return nil if diff == 0
     amount = Spree::Money.new(diff.abs, { currency: currency }).to_html
     if diff > 0
-      "(#{Spree.t(:add)}: #{amount}".html_safe
+      "(#{Spree.t(:add)}): #{amount}".html_safe
     else
-      "(#{Spree.t(:subtract)}: #{amount}".html_safe
+      "(#{Spree.t(:subtract)}): #{amount}".html_safe
     end
   end
 
