@@ -41,8 +41,9 @@ FactoryGirl.define do
   end
 
   factory :multi_currency_product, parent: :product do
-    prices {
-      Array[FactorGirl.create(:price_in_krw),FactoryGirl.create(:price_in_usd)]
+    price 200
+    variants {
+      Array[FactoryGirl.create(:multi_currency_variant)]
     }
   end
 
