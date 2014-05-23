@@ -5,10 +5,14 @@ Spree::OrderUpdater.class_eval do
     update_item_total
     update_shipment_total
     update_adjustment_total
-    presentation_currency = if Spree::Config[:presentation_currency] then Spree::Config[:presentation_currency] end
+    update_presentation_totals
+  end
+
+  def update_presentation_totals
     settlement_currency = if Spree::Config[:settlement_currency] then Spree::Config[:settlement_currency] end
+    presentation_currency = if Spree::Config[:presentation_currency] then Spree::Config[:presentation_currency] end
     if presentation_currency and settlement_currency
-      @rate = Spree::CurrencyRate.find_by(:target_currency => presentation_currency, :base_currency => settlement_currency)
+      @rate = Spree::CurrencyRate.find_by(:target_currency => presentation_currency)
       update_presentation_payment_total
       update_presentation_item_total
       update_presentation_shipment_total
