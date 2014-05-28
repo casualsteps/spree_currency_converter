@@ -4,12 +4,12 @@ module Spree
 
     def add_price_in_won
       rate = Spree::CurrencyRate.find_by(:base_currency => 'USD')
-      secondary_price = self.price_in(Spree::Config[:secondary_currency])
-      secondary_price = self.prices.new(currency: Spree::Config[:secondary_currency]) if secondary_price.blank?
-      secondary_price.amount = rate.convert_to_won(self.price).amount
-      if secondary_price && (secondary_price.changed? || secondary_price.new_record? || secondary_price.amount.present?)
-        self.prices << secondary_price
-        secondary_price.save!
+      presentation_price = self.price_in(Spree::Config[:presentation_currency])
+      presentation_price = self.prices.new(currency: Spree::Config[:presentation_currency]) if presentation_price.blank?
+      presentation_price.amount = rate.convert_to_won(self.price).amount
+      if presentation_price && (presentation_price.changed? || presentation_price.new_record? || presentation_price.amount.present?)
+        self.prices << presentation_price
+        presentation_price.save!
       end
     end
   end
