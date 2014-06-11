@@ -42,6 +42,8 @@ Spree::OrderUpdater.class_eval do
       presentation_total: order.presentation_total,
       updated_at: Time.now,
     )
+    # running this will update bugasae and gwansae on the order record
+    Spree::Calculator::KoreanSurfaceMail.first.compute(order)
   end
 
   def update_presentation_total
