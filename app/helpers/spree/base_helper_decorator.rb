@@ -5,6 +5,8 @@ Spree::BaseHelper.module_eval do
     max_price = prices.max_by(&:price)
     min_price = prices.min_by(&:price)
 
+    if !max_price || !min_price
+      "재고가 없습니다"
     if max_price.price == min_price.price
       max_price.display_price.to_html
     else
