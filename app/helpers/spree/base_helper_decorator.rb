@@ -7,7 +7,7 @@ Spree::BaseHelper.module_eval do
 
     if !max_price || !min_price
       "재고가 없습니다"
-    if max_price.price == min_price.price
+    elsif max_price.price == min_price.price
       max_price.display_price.to_html
     else
       min_price.display_price.to_html + " ~ " + max_price.display_price.to_html
