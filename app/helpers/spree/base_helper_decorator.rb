@@ -6,7 +6,8 @@ Spree::BaseHelper.module_eval do
     min_price = prices.min_by(&:price)
 
     if !max_price || !min_price
-      "재고가 없습니다"
+      # probably means there's no variants. Let's try returning the master price if it exists, otherwise there must be an error
+      return product_or_variant.master.display_price ? product_or_variant.master.display_price.to_html : "재고가 없습니다"
     elsif max_price.price == min_price.price
       max_price.display_price.to_html
     else
