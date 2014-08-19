@@ -15,7 +15,7 @@ Spree::BaseHelper.module_eval do
     else
       ### Temporary - naver only allows one price per product, so applying this patch
       # min_price.display_price.to_html + " ~ " + max_price.display_price.to_html
-      min_price.display_price.to_html
+      min_price.display_price.to_html + " ~"
     end
   end
 end
