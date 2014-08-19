@@ -13,7 +13,9 @@ Spree::BaseHelper.module_eval do
     elsif max_price.price == min_price.price
       max_price.display_price.to_html
     else
-      min_price.display_price.to_html + " ~ " + max_price.display_price.to_html
+      ### Temporary - naver only allows one price per product, so applying this patch
+      # min_price.display_price.to_html + " ~ " + max_price.display_price.to_html
+      min_price.display_price.to_html
     end
   end
 end
