@@ -20,20 +20,20 @@ describe "when placing an order it should use the USD price" do
     it "should have presentation totals and display totals" do
       expect(@order.item_total).to eq(50.00)
       expect(@order.presentation_item_total).to eq(52500.00)
-      expect(@order.display_presentation_item_total).to eq(Spree::Money.new(52500.00, {currency: Spree::Config[:presentation_currency]}))
+      expect(@order.display_presentation_item_total).to eq(Spree::Money.new(52500.00, {currency: Spree::Config[:presentation_currency]}).to_html)
       expect(@order.presentation_included_tax_total).to eq(0)
-      expect(@order.display_presentation_included_tax_total).to eq(Spree::Money.new(0, {currency: Spree::Config[:presentation_currency]}))
+      expect(@order.display_presentation_included_tax_total).to eq(Spree::Money.new(0, {currency: Spree::Config[:presentation_currency]}).to_html)
       expect(@order.additional_tax_total).to eq(5.0)
       expect(@order.presentation_additional_tax_total).to eq(5250.0)
-      expect(@order.display_presentation_additional_tax_total).to eq(Spree::Money.new(5250, {currency: Spree::Config[:presentation_currency]}))
+      expect(@order.display_presentation_additional_tax_total).to eq(Spree::Money.new(5250, {currency: Spree::Config[:presentation_currency]}).to_html)
       expect(@order.shipment_total).to eq(10.0)
       expect(@order.presentation_shipment_total).to eq(10500.0)
-      expect(@order.display_presentation_shipment_total).to eq(Spree::Money.new(10500.00, {currency: Spree::Config[:presentation_currency]}))
+      expect(@order.display_presentation_shipment_total).to eq(Spree::Money.new(10500.00, {currency: Spree::Config[:presentation_currency]}).to_html)
       expect(@order.presentation_payment_total).to eq(0)
-      expect(@order.display_presentation_payment_total).to eq(Spree::Money.new(0,{currency: Spree::Config[:presentation_currency]}))
+      expect(@order.display_presentation_payment_total).to eq(Spree::Money.new(0,{currency: Spree::Config[:presentation_currency]}).to_html)
       expect(@order.total).to eq(65)
       expect(@order.presentation_total).to eq(68250.0)
-      expect(@order.display_presentation_total).to eq(Spree::Money.new(68250.0,{currency: Spree::Config[:presentation_currency]}))
+      expect(@order.display_presentation_total).to eq(Spree::Money.new(68250.0,{currency: Spree::Config[:presentation_currency]}).to_html)
     end
 
   end

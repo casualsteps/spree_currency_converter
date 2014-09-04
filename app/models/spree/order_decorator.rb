@@ -6,27 +6,27 @@ Spree::Order.class_eval do
   end
 
   def display_presentation_item_total
-    Spree::Money.new(self.presentation_item_total,{currency: self.presentation_currency})
+    Spree::Money.new(self.presentation_item_total,{currency: self.presentation_currency}).to_html
   end
 
   def display_presentation_included_tax_total
-    Spree::Money.new(self.presentation_included_tax_total,{currency: self.presentation_currency})
+    Spree::Money.new(self.presentation_included_tax_total,{currency: self.presentation_currency}).to_html
   end
 
   def display_presentation_additional_tax_total
-    Spree::Money.new(self.presentation_additional_tax_total,{currency: self.presentation_currency})
+    Spree::Money.new(self.presentation_additional_tax_total,{currency: self.presentation_currency}).to_html
   end
 
   def display_presentation_shipment_total
-    Spree::Money.new(self.presentation_shipment_total,{currency: self.presentation_currency})
+    Spree::Money.new(self.presentation_shipment_total,{currency: self.presentation_currency}).to_html
   end
 
   def display_presentation_payment_total
-    Spree::Money.new(self.presentation_payment_total,{currency: self.presentation_currency})
+    Spree::Money.new(self.presentation_payment_total,{currency: self.presentation_currency}).to_html
   end
 
   def display_presentation_total
-    Spree::Money.new(self.presentation_total, {currency: self.presentation_currency})
+    Spree::Money.new(self.presentation_total, {currency: self.presentation_currency}).to_html
   end
 
 end
