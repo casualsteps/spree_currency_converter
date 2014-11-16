@@ -10,14 +10,14 @@ module Spree
       amount_in_krw = amount.to_money("KRW")
       usd_rate = 1 / self.rate
       ::Money::Money.add_rate(self.target_currency,self.base_currency,usd_rate)
-      amount_in_usd = Money::Money.new(amount_in_krw,'KRW').exchange_to('USD')
+      amount_in_usd = ::Money::Money.new(amount_in_krw,'KRW').exchange_to('USD')
       amount_in_usd
     end
 
     def convert_to_won(amount)
       amount_in_usd = amount.to_money("USD")
-      Money::Money.add_rate(self.base_currency,self.target_currency,self.rate)
-      amount_in_won = Money::Money.us_dollar(amount_in_usd).exchange_to('KRW')
+      ::Money::Money.add_rate(self.base_currency,self.target_currency,self.rate)
+      amount_in_won = ::Money::Money.us_dollar(amount_in_usd).exchange_to('KRW')
       amount_in_won
     end
 
