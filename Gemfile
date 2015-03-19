@@ -16,4 +16,3 @@ gem 'monetize'
 
 gem 'spree', '2.2.1'
 gem 'spree_gateway', :git => 'git://github.com/spree/spree_gateway.git', :branch => '2-2-stable'
-gem 'spree_auth_devise', :git => 'git://github.com/spree/spree_auth_devise.git', :branch => '2-2-stable'
