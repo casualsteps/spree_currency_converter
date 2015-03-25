@@ -15,7 +15,7 @@ class Money
 
       KR_EXCHANGE_RATE_URL = 'http://www.customs.go.kr/kcshome/rate/ExchangeRateList.do'
 
-      attr_reader :rates_updated_at, :rates_updated_on, :ttl, :rates_expired_at
+      attr_reader :rates_updated_at, :rates_updated_on, :rates_expired_at
 
       def flush_rates
         @mutex.synchronize{
@@ -43,14 +43,8 @@ class Money
         @rates[rate_key_for(from, to)] || indirect_rate(from, to)
       end
 
-      def ttl=(value)
-        @ttl = value
-        update_expired_at
-        @ttl
-      end
-
       def rates_expired?
-        rates_expired_at && rates_expired_at <= Time.now
+        !rates_expired_at || rates_expired_at <= Time.now
       end
 
       def exchange_rates(date)
@@ -64,11 +58,8 @@ class Money
       private
 
       def update_expired_at
-        @rates_expired_at = if ttl
-          @rates_updated_at ? @rates_updated_at + ttl : Time.now
-        else
-          nil
-        end
+        # next sunday from today
+        @rates_expired_at = (7 - Time.now.wday).days.from_now
       end
 
       def indirect_rate from, to
