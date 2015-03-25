@@ -9,9 +9,15 @@ module SpreeCurrencyConverter
       g.test_framework :rspec
     end
 
+    require 'spree/core/currency_helpers'
+
     def self.activate
       Dir.glob(File.join(File.dirname(__FILE__), '../../app/**/*_decorator*.rb')) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)
+      end
+
+      ActiveSupport.on_load(:action_view) do
+        ActionView::Base.send :include, Spree::CurrencyHelpers
       end
     end
 
