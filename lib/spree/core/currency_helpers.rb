@@ -4,6 +4,7 @@ module Spree
 
     # Convert from default currency (USD), to a display currency (default KRW)
     def format_currency(amount, opts = {})
+      amount ||= 0
       opts.reverse_merge!(to: Spree::Config[:presentation_currency], from: Spree::Config[:currency])
       money = case amount
       when Spree::Money
