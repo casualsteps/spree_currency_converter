@@ -1,32 +1,26 @@
 Spree::Order.class_eval do
-  before_create :link_by_email,:set_presentation_currency
-
-  def set_presentation_currency
-    self.presentation_currency = Spree::Config[:presentation_currency] if Spree::Config[:presentation_currency] != nil
+  state_machine do
+    after_transition to: :complete, do: :store_current_rate
   end
 
-  def display_presentation_item_total
-    Spree::Money.new(self.presentation_item_total,{currency: self.presentation_currency}).to_html
+  def store_current_rate
+    self.update_attributes(rate: Money.default_bank.get_rate('USD', 'KRW'))
   end
 
-  def display_presentation_included_tax_total
-    Spree::Money.new(self.presentation_included_tax_total,{currency: self.presentation_currency}).to_html
+  def presentation_currency
+    Spree::Config[:presentation_currency]
   end
 
-  def display_presentation_additional_tax_total
-    Spree::Money.new(self.presentation_additional_tax_total,{currency: self.presentation_currency}).to_html
+  # Accepts a symbol representing another amount on the order model, and
+  # converts it to the presentation currency.
+  # Example:
+  #   order.to_presentation(:total)
+  def to_presentation(method)
+    @bank ||= Money.default_bank if rate.zero?
+    @bank ||= Money::Bank::VariableExchange.new.tap {|b| b.add_rate('USD', 'KRW', rate) }
+    currency = Spree::Config[:presentation_currency]
+    amount = self.__send__(method)
+    money = @bank.exchange_with(amount.to_money(Spree::Config[:currency]), currency)
+    Spree::Money.new(money ,{currency: presentation_currency})
   end
-
-  def display_presentation_shipment_total
-    Spree::Money.new(self.presentation_shipment_total,{currency: self.presentation_currency}).to_html
-  end
-
-  def display_presentation_payment_total
-    Spree::Money.new(self.presentation_payment_total,{currency: self.presentation_currency}).to_html
-  end
-
-  def display_presentation_total
-    Spree::Money.new(self.presentation_total, {currency: self.presentation_currency}).to_html
-  end
-
 end
