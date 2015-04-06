@@ -23,9 +23,8 @@ Spree::Order.class_eval do
     end
     @bank ||= Money.default_bank if rate.zero?
     @bank ||= Money::Bank::VariableExchange.new.tap {|b| b.add_rate(source_currency, target_currency, rate) }
-    currency = Spree::Config[:presentation_currency]
     amount = self.__send__(method)
-    money = @bank.exchange_with(amount.to_money(Spree::Config[:currency]), currency)
-    Spree::Money.new(money ,{currency: presentation_currency})
+    money = @bank.exchange_with(amount.to_money(Spree::Config[:currency]), target_currency)
+    Spree::Money.new(money ,{currency: target_currency})
   end
 end
