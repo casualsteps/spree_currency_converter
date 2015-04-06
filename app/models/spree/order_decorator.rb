@@ -15,9 +15,14 @@ Spree::Order.class_eval do
   # converts it to the presentation currency.
   # Example:
   #   order.to_presentation(:total)
-  def to_presentation(method)
+  def to_presentation(method, target_currency = "KRW")
+    if target_currency == "KRW"
+      source_currency = "USD" 
+    else
+      source_currency = "KRW"
+    end
     @bank ||= Money.default_bank if rate.zero?
-    @bank ||= Money::Bank::VariableExchange.new.tap {|b| b.add_rate('USD', 'KRW', rate) }
+    @bank ||= Money::Bank::VariableExchange.new.tap {|b| b.add_rate(source_currency, target_currency, rate) }
     currency = Spree::Config[:presentation_currency]
     amount = self.__send__(method)
     money = @bank.exchange_with(amount.to_money(Spree::Config[:currency]), currency)
