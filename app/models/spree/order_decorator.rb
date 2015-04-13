@@ -19,7 +19,7 @@ Spree::Order.class_eval do
     amount = self.__send__(method)
     if target_currency == "KRW"
       @bank ||= Money.default_bank if rate.zero?
-      @bank ||= Money::Bank::VariableExchange.new.tap {|b| b.add_rate(source_currency, target_currency, rate) }
+      @bank ||= Money::Bank::VariableExchange.new.tap {|b| b.add_rate("USD", target_currency, rate) }
       money = @bank.exchange_with(amount.to_money(Spree::Config[:currency]), target_currency)
     else
       money = amount.to_money(Spree::Config[:currency])
