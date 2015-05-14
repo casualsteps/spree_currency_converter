@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree_core', '~> 2.2.2'
+  s.add_dependency 'spree_core', '~> 2.3.2'
   s.add_dependency 'nokogiri', '~> 1.6.1'
   s.add_dependency 'rest_client', '~> 1.7.3'
   s.add_dependency 'money', '>= 6.0.1'
