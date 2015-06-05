@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_currency_converter'
-  s.version     = '2.2.2'
+  s.version     = '2.4.0'
   s.summary     = 'Calculate rates based on Korea Customs Service'
   s.description = 'Korea Customs Service bank for Money gem'
   s.required_ruby_version = '>= 1.9.3'
@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree_core', '~> 2.3.2'
+  s.add_dependency 'spree_core', '~> 2.4.0'
   s.add_dependency 'nokogiri', '~> 1.6.1'
   s.add_dependency 'rest_client', '~> 1.7.3'
   s.add_dependency 'money', '>= 6.0.1'
