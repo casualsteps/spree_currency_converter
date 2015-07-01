@@ -1,11 +1,4 @@
 Spree::Order.class_eval do
-  state_machine do
-    after_transition to: :complete, do: :store_current_rate
-  end
-
-  def store_current_rate
-    self.update_attributes(rate: Money.default_bank.get_rate('USD', 'KRW'))
-  end
 
   def presentation_currency
     Spree::Config[:presentation_currency]
