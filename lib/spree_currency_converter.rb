@@ -48,7 +48,7 @@ class Money
       end
 
       def exchange_rates(date)
-        { 'USD' => BigDecimal('1,157.13') }
+        { 'USD' => BigDecimal('1157.13') }
         # page = RestClient.post(KR_EXCHANGE_RATE_URL,{ 'currDate' => date.strftime("%F"), 'eximDitc' => 2, 'x' => 38, 'y' => 10 })
         # Nokogiri::HTML(page).xpath('//*[@id="txt"]/div/table/tbody').css('tr').each_with_object({}) do |row, all|
         #   cols = row.css('td')
